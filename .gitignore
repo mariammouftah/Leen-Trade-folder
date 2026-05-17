@@ -1,0 +1,29 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code session
+.claude/
+
+# Local helper scripts (one-off generators, not part of deploy)
+_*.py
+_*.sh
+
+# Logs
+*.log
+error_log
+
+# Local backup zips
+*.zip
+*.tar.gz
+
+# Build artifacts (none currently, but reserve)
+node_modules/
+vendor/
