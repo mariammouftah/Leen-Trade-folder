@@ -8,7 +8,12 @@
   }
 
   /* === Page-level reset (no extra browser default padding around the site) === */
-  html, body { margin: 0; padding: 0; background: #fff; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #fff;
+    overflow-x: hidden;        /* belt: never allow horizontal scroll */
+    max-width: 100vw;          /* suspenders: cap width at viewport */
+  }
   body { -webkit-text-size-adjust: 100%; }
 
   /* ===== Brand variables ===== */
