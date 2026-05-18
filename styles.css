@@ -101,6 +101,22 @@
   .lt-reveal[data-delay="3"] { transition-delay: .24s; }
   .lt-reveal[data-delay="4"] { transition-delay: .32s; }
   .lt-reveal[data-delay="5"] { transition-delay: .40s; }
+  /* Skip the reveal animation entirely on mobile: animations are less useful
+     on small screens AND removing the JS dependency means content always
+     shows even if app.js hasn't finished loading / observers haven't fired. */
+  @media (max-width: 900px) {
+    .lt-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+  /* Accessibility: respect the user's "Reduce motion" OS setting */
+  @media (prefers-reduced-motion: reduce) {
+    .lt-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 
   /* Nav */
   .lt-nav-link { position: relative; transition: color .25s ease; padding: 8px 0; }
