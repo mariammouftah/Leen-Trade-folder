@@ -728,23 +728,76 @@
   .leen-site[dir="rtl"] .lt-tl-step .lt-tl-content { text-align: right; padding-left: 0; padding-right: 30px; }
   .leen-site[dir="rtl"] .lt-tl-step:nth-of-type(even) .lt-tl-content { text-align: left; padding-right: 0; padding-left: 30px; }
   @media (max-width: 900px) {
-    .lt-timeline::before { display: none; }
-    .lt-tl-step { grid-template-columns: 1fr; gap: 18px; margin-bottom: 56px; }
-    .lt-tl-step .lt-tl-content,
-    .lt-tl-step:nth-of-type(even) .lt-tl-content { grid-column: 1; text-align: left; padding: 0; }
+    /* Timeline becomes a left-anchored vertical line with side-dot markers */
+    .lt-timeline {
+      position: relative;
+      padding: 12px 0 12px 38px;
+    }
+    .lt-timeline::before {
+      display: block;
+      top: 0; bottom: 0;
+      left: 14px;
+      width: 2px;
+      transform: none;
+    }
+    /* Each step stacks: image on top, content below */
+    .lt-tl-step {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 48px;
+      position: relative;
+    }
+    /* CRITICAL: undo the desktop grid-row:1 / grid-column pinning so items
+       can flow naturally instead of overlapping in the same cell */
     .lt-tl-step .lt-tl-image,
-    .lt-tl-step:nth-of-type(even) .lt-tl-image { grid-column: 1; }
-    .lt-tl-marker { display: none; }
+    .lt-tl-step .lt-tl-content,
+    .lt-tl-step .lt-tl-marker,
+    .lt-tl-step:nth-of-type(even) .lt-tl-image,
+    .lt-tl-step:nth-of-type(even) .lt-tl-content {
+      grid-row: auto !important;
+      grid-column: 1 !important;
+      text-align: left !important;
+      padding: 0 !important;
+    }
+    /* Visual order: image first, content second */
+    .lt-tl-step .lt-tl-image   { order: 1; }
+    .lt-tl-step .lt-tl-content { order: 2; }
+    /* Marker becomes a dot pinned to the vertical line at the row's top */
+    .lt-tl-step .lt-tl-marker {
+      display: flex;
+      position: absolute;
+      left: -30px;
+      top: 14px;
+      width: 22px; height: 22px;
+      z-index: 1;
+    }
+    .lt-tl-marker span {
+      width: 14px; height: 14px;
+    }
+    /* RTL: mirror to right side */
+    .leen-site[dir="rtl"] .lt-timeline { padding: 12px 38px 12px 0; }
+    .leen-site[dir="rtl"] .lt-timeline::before { left: auto; right: 14px; }
+    .leen-site[dir="rtl"] .lt-tl-step .lt-tl-marker { left: auto; right: -30px; }
     .leen-site[dir="rtl"] .lt-tl-step .lt-tl-content,
-    .leen-site[dir="rtl"] .lt-tl-step:nth-of-type(even) .lt-tl-content { text-align: right; padding: 0; }
+    .leen-site[dir="rtl"] .lt-tl-step:nth-of-type(even) .lt-tl-content {
+      text-align: right !important;
+    }
   }
 
-  /* Services timeline: image height + spacing tighter on small phones */
+  /* Services timeline: tighter on small phones */
   @media (max-width: 480px) {
-    .lt-tl-img-wrap { height: 200px !important; }
-    .lt-tl-title { font-size: 1.05rem !important; }
-    .lt-tl-desc  { font-size: .88rem !important; }
-    .lt-tl-step  { margin-bottom: 38px !important; }
+    .lt-timeline { padding-left: 30px !important; }
+    .lt-timeline::before { left: 10px !important; }
+    .lt-tl-step .lt-tl-marker { left: -26px !important; top: 10px !important; width: 18px !important; height: 18px !important; }
+    .lt-tl-marker span { width: 12px !important; height: 12px !important; }
+    .lt-tl-img-wrap { height: 200px !important; border-radius: 8px; }
+    .lt-tl-num   { font-size: .74rem !important; margin-bottom: 6px !important; }
+    .lt-tl-title { font-size: 1.1rem !important; margin-bottom: 10px !important; line-height: 1.25 !important; }
+    .lt-tl-desc  { font-size: .9rem !important; line-height: 1.6 !important; }
+    .lt-tl-step  { margin-bottom: 38px !important; gap: 14px !important; }
+    .leen-site[dir="rtl"] .lt-timeline { padding-right: 30px !important; }
+    .leen-site[dir="rtl"] .lt-timeline::before { right: 10px !important; }
+    .leen-site[dir="rtl"] .lt-tl-step .lt-tl-marker { right: -26px !important; }
   }
 
   /* Why Buyers + Industries cards tighter */
