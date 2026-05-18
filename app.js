@@ -518,6 +518,14 @@
     var html = document.documentElement;
     html.setAttribute('lang', lang);
     html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    // Also set on .leen-site so [dir="rtl"] CSS rules can match — otherwise
+    // all the RTL position flips, padding mirrors, FAB swaps etc. never fire
+    // and the page ends up with asymmetric whitespace.
+    var siteRoot = document.querySelector('.leen-site');
+    if (siteRoot) {
+      siteRoot.setAttribute('lang', lang);
+      siteRoot.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
     document.querySelectorAll('[data-lang]').forEach(function(b){
       b.classList.toggle('is-active', b.getAttribute('data-lang') === lang);
     });
