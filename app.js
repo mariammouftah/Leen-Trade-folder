@@ -633,11 +633,23 @@
   var rfqForm = document.getElementById('lt-rfq-form');
   if (rfqForm) {
     rfqForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      if (!validateRfq()) return;
-      var subject = encodeURIComponent('RFQ — ' + (document.getElementById('rfq-company').value || 'New enquiry'));
-      var body = encodeURIComponent(buildRfqBody());
-      window.location.href = 'mailto:info@leentrade.net?subject=' + subject + '&body=' + body;
+      // Validate before allowing native POST to Web3Forms
+      if (!validateRfq()) { e.preventDefault(); return; }
+      // Bot trap: if the honeypot checkbox is checked, abort silently
+      var honey = document.getElementById('lt-rfq-honey');
+      if (honey && honey.checked) { e.preventDefault(); return; }
+      // Set a nice subject line from the company name (Web3Forms reads `subject`)
+      var subj = document.getElementById('lt-rfq-subject');
+      var company = (document.getElementById('rfq-company').value || '').trim();
+      if (subj && company) subj.value = 'New RFQ — ' + company;
+      // Show "Sending..." state on the submit button
+      var btn = rfqForm.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        btn.style.cursor = 'wait';
+      }
+      // Let the form POST natively — Web3Forms handles delivery + redirects to `redirect`
     });
   }
   var rfqWa = document.getElementById('lt-rfq-wa');
