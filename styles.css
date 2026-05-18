@@ -81,6 +81,17 @@
      icon (e.g. inside "Request Quote → ") needs to be horizontally mirrored.
      Vertical arrows (up/down) are unaffected. */
   .leen-site[dir="rtl"] svg:has(use[href$="#i-arrow-right"]) { transform: scaleX(-1); }
+  /* RTL bidi: phone numbers ("+961 71 231 843") and emails contain only digits
+     and weak characters (+, spaces, –, @) — no strong directional characters.
+     In a RTL context the Unicode bidi algorithm reverses the digit groups
+     ("+961 71 231 843" -> "843 231 71 961+"). Force these tokens to render
+     left-to-right while keeping the surrounding RTL layout intact. */
+  .leen-site[dir="rtl"] a[href^="tel:"],
+  .leen-site[dir="rtl"] a[href^="mailto:"],
+  .leen-site[dir="rtl"] a[href^="https://wa.me"],
+  .leen-site[dir="rtl"] .lt-contact-card-v2 .value {
+    unicode-bidi: plaintext;
+  }
 
   .leen-site [id] { scroll-margin-top: 100px; }
 
