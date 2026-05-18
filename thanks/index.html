@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a2540">
+  <!-- Google Analytics 4 (with RFQ conversion event) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-89FHST522L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-89FHST522L', { 'anonymize_ip': true });
+    // Landing on this page = a Web3Forms submission just succeeded.
+    // Fire a custom conversion event so the dashboard can show RFQ counts.
+    gtag('event', 'rfq_submitted', {
+      event_category: 'engagement',
+      event_label: 'RFQ form',
+      value: 1
+    });
+  </script>
   <title>Thanks — We received your request | Leen Trade Co.</title>
   <meta name="description" content="Your B2B request has been received. The Leen Trade sales team will review your enquiry and respond with pricing and availability.">
   <meta name="robots" content="noindex,follow">
