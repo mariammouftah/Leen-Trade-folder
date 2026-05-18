@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a2540">
+  <title>Page not found — Leen Trade Co.</title>
+  <meta name="description" content="The page you're looking for doesn't exist or has moved. Browse our products, services, or get in touch.">
+  <meta name="robots" content="noindex,follow">
+
+  <link rel="icon" type="image/png" href="/Assets/favicon.png">
+  <link rel="apple-touch-icon" href="/Assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Cairo:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Restore the user's previously chosen language from localStorage before any paint
+       so AR returnees never see an EN flash. -->
+  <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('lt-lang');
+        if (lang === 'ar') {
+          document.documentElement.setAttribute('lang', 'ar');
+          document.documentElement.setAttribute('dir', 'rtl');
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #0a2540;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(201,162,95,.10), transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(10,37,64,.08), transparent 55%),
+        #f7f8fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      line-height: 1.6;
+    }
+    html[lang="ar"] body {
+      font-family: 'Cairo', 'Inter', system-ui, sans-serif;
+    }
+
+    .e404-card {
+      max-width: 620px;
+      width: 100%;
+      background: #fff;
+      border-radius: 14px;
+      padding: 56px 48px;
+      box-shadow: 0 24px 60px rgba(15,23,42,.10);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .e404-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #c9a25f 0%, #d4b878 50%, #c9a25f 100%);
+    }
+
+    .e404-num {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(4.5rem, 14vw, 7rem);
+      font-weight: 800;
+      color: #c9a25f;
+      line-height: .9;
+      margin: 0 0 8px 0;
+      letter-spacing: -.04em;
+      direction: ltr;        /* numbers stay LTR even in RTL */
+      unicode-bidi: isolate;
+    }
+
+    .e404-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #c9a25f;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 800;
+      margin: 0 0 18px;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+    p {
+      font-size: 1rem;
+      color: #4b5563;
+      margin: 0 0 14px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .actions {
+      margin-top: 36px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn-gold {
+      background: #c9a25f;
+      color: #0a2540;
+      border: 1px solid #c9a25f;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(201,162,95,.35);
+      background: #d4b878;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: #0a2540;
+      border: 1px solid #d1d5db;
+    }
+    .btn-ghost:hover {
+      border-color: #0a2540;
+      background: rgba(10,37,64,.04);
+    }
+
+    .meta {
+      margin-top: 40px;
+      padding-top: 26px;
+      border-top: 1px solid #e5e7eb;
+      font-size: .82rem;
+      color: #6b7280;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+    .meta a {
+      color: #0a2540;
+      text-decoration: none;
+      font-weight: 600;
+      /* Phone numbers contain weak chars; stay LTR even in RTL context */
+      unicode-bidi: plaintext;
+    }
+    .meta a:hover { color: #c9a25f; }
+
+    /* Bilingual content — show only the matching variant */
+    .ar-only { display: none; }
+    html[lang="ar"] .en-only { display: none; }
+    html[lang="ar"] .ar-only { display: block; }
+    html[lang="ar"] .ar-only-inline { display: inline; }
+
+    @media (max-width: 480px) {
+      .e404-card { padding: 40px 26px; border-radius: 12px; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="e404-card" role="main">
+
+    <div class="e404-num" aria-hidden="true">404</div>
+
+    <div class="e404-eyebrow">
+      <span class="en-only">Page not found</span>
+      <span class="ar-only">الصفحة غير موجودة</span>
+    </div>
+
+    <h1>
+      <span class="en-only">We can&rsquo;t find that page.</span>
+      <span class="ar-only">لم نعثر على هذه الصفحة.</span>
+    </h1>
+
+    <p>
+      <span class="en-only">
+        The link may be broken or the page might have moved.
+        Try one of the destinations below instead.
+      </span>
+      <span class="ar-only">
+        قد يكون الرابط معطّلاً أو أنّ الصفحة قد نُقلت.
+        جرّب أحد الخيارات أدناه بدلاً من ذلك.
+      </span>
+    </p>
+
+    <div class="actions">
+      <a href="/" class="btn btn-gold">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v11h14V10"/></svg>
+        <span class="en-only">Back to home</span>
+        <span class="ar-only">العودة إلى الرئيسية</span>
+      </a>
+      <a href="/products/" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <span class="en-only">Browse products</span>
+        <span class="ar-only">استعرض المنتجات</span>
+      </a>
+      <a href="/contact/" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        <span class="en-only">Contact us</span>
+        <span class="ar-only">تواصل معنا</span>
+      </a>
+    </div>
+
+    <div class="meta">
+      <div>
+        <span class="en-only">Or reach us directly:</span>
+        <span class="ar-only">أو تواصل معنا مباشرة:</span>
+      </div>
+      <div>
+        <a href="tel:+96171231843">+961 71 231 843</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:info@leentrade.net">info@leentrade.net</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
