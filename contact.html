@@ -2272,7 +2272,7 @@
       if (!validateRfq()) { e.preventDefault(); return; }
       // Bot trap: if the honeypot field has any value, abort silently
       var honey = document.getElementById('lt-rfq-honey');
-      if (honey && honey.value) { e.preventDefault(); return; }
+      if (honey && honey.checked) { e.preventDefault(); return; }
       // Set a nice subject line from the company name
       var subj = document.getElementById('lt-rfq-subject');
       var company = (document.getElementById('rfq-company').value || '').trim();
