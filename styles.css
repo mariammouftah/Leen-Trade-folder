@@ -76,6 +76,11 @@
   .leen-site[dir="rtl"] .lt-fab-wa { right: auto; left: 22px; }
   .leen-site[dir="rtl"] .lt-fab-top { right: auto; left: 22px; }
   .leen-site[dir="rtl"] .lt-scroll-cue { letter-spacing: .04em; }
+  /* RTL: flip horizontal arrows so they point in the natural reading direction.
+     In Arabic the "forward" direction is right-to-left, so a right-pointing arrow
+     icon (e.g. inside "Request Quote → ") needs to be horizontally mirrored.
+     Vertical arrows (up/down) are unaffected. */
+  .leen-site[dir="rtl"] svg:has(use[href$="#i-arrow-right"]) { transform: scaleX(-1); }
 
   .leen-site [id] { scroll-margin-top: 100px; }
 
