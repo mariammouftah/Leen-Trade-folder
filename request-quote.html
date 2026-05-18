@@ -40,7 +40,7 @@
         "name": "Leen Trade Co.",
         "url": "https://leentrade.co/",
         "logo": "https://leentrade.co/Assets/logo-dark.png",
-        "email": "info@leentrade.co",
+        "email": "info@leentrade.net",
         "telephone": "+961 71 231 843",
         "foundingDate": "2014",
         "areaServed": [
@@ -57,7 +57,7 @@
         "@id": "https://leentrade.co/#saida",
         "name": "Leen Trade Co. — Saida Headquarters",
         "telephone": "+961 71 231 843",
-        "email": "info@leentrade.co",
+        "email": "info@leentrade.net",
         "address": { "@type": "PostalAddress", "addressLocality": "Saida", "addressCountry": "LB" },
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
@@ -78,6 +78,14 @@
   </script>
 
 <style>
+  /* Twemoji Country Flags — needed because Windows doesn't render flag emojis natively.
+     Free, open-source font (CC-BY 4.0). Loads only when a flag emoji is rendered. */
+  @font-face {
+    font-family: 'Twemoji Country Flags';
+    unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;
+    src: url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1/dist/TwemojiCountryFlags.woff2') format('woff2');
+    font-display: swap;
+  }
 
   /* === Page-level reset (no extra browser default padding around the site) === */
   html, body { margin: 0; padding: 0; background: #fff; }
@@ -854,14 +862,17 @@
   }
   .lt-mkt-flag {
     position: absolute;
-    top: 18px; left: 18px;
+    top: 22px; left: 22px;
     z-index: 2;
-    background: #fff;
-    border-radius: 4px;
-    padding: 5px 7px;
-    box-shadow: 0 4px 14px rgba(0,0,0,.22);
+    font-family: 'Twemoji Country Flags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: 0;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,.45));
   }
-  .lt-mkt-flag img { display: block; width: 38px; height: auto; }
+  @media (max-width: 640px) {
+    .lt-mkt-flag { top: 14px; left: 14px; font-size: 42px; }
+  }
   .lt-mkt-body {
     padding: 44px 48px;
     display: flex;
@@ -1084,16 +1095,13 @@
   }
   .lt-location-office .flag-tile {
     flex-shrink: 0;
-    width: 44px; height: 30px;
-    border-radius: 3px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12);
-    border: 1px solid rgba(255,255,255,.6);
-  }
-  .lt-location-office .flag-tile img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Twemoji Country Flags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: 0;
   }
   .lt-location-office .o-name {
     font-size: 1rem;
@@ -1206,6 +1214,84 @@
     .lt-hero-section .lt-btn-ghost .ic-sm { width: 12px !important; height: 12px !important; }
   }
 
+
+  /* === RESPONSIVE POLISH (final pass) === */
+  /* Sections use inline `padding:96px 40px` etc., so we need !important */
+  @media (max-width: 1024px) {
+    .lt-section { padding-left: 32px !important; padding-right: 32px !important; }
+    .lt-page-header { padding-left: 32px !important; padding-right: 32px !important; }
+  }
+  @media (max-width: 768px) {
+    .lt-section { padding: 64px 24px !important; }
+    .lt-page-header { padding: 60px 24px !important; }
+    .lt-page-header h1 { font-size: clamp(1.6rem, 5.8vw, 2.2rem) !important; line-height: 1.2 !important; }
+    .lt-page-header p  { font-size: .94rem !important; line-height: 1.65 !important; }
+    .lt-section-title  { font-size: clamp(1.4rem, 5vw, 1.9rem) !important; line-height: 1.22 !important; }
+    .lt-hero-title     { font-size: clamp(1.75rem, 6.5vw, 2.6rem) !important; line-height: 1.15 !important; }
+  }
+  @media (max-width: 480px) {
+    .lt-section { padding: 48px 18px !important; }
+    .lt-page-header { padding: 44px 18px !important; }
+    .lt-hero-section { padding-left: 18px !important; padding-right: 18px !important; }
+    .lt-eyebrow { font-size: .66rem !important; letter-spacing: .14em !important; }
+    .lt-page-header nav { font-size: .72rem !important; }
+  }
+
+  /* Image / iframe overflow guard — never break the viewport */
+  img, video, iframe { max-width: 100%; }
+
+  /* Floating action buttons: smaller on phones to leave content room */
+  @media (max-width: 480px) {
+    .lt-fab-wa, .lt-fab-top {
+      width: 48px !important;
+      height: 48px !important;
+    }
+    .lt-fab-wa .ic-xl { width: 22px !important; height: 22px !important; }
+    .lt-fab-top .ic-md { width: 16px !important; height: 16px !important; }
+  }
+
+  /* Inline padding on hero — make sure horizontal padding scales */
+  @media (max-width: 768px) {
+    #lt-hero > div[style*="padding:90px 40px"],
+    #lt-hero > div[style*="padding: 90px 40px"] {
+      padding: 60px 24px !important;
+    }
+  }
+
+  /* Markets card bullets / facts: tighter on tiny phones */
+  @media (max-width: 480px) {
+    .lt-mkt-body ul li { font-size: .85rem !important; line-height: 1.55 !important; padding: 4px 0 !important; }
+    .lt-mkt-facts { grid-template-columns: 1fr 1fr !important; gap: 12px 14px !important; }
+    .lt-mkt-facts > div > div:first-child { font-size: .58rem !important; letter-spacing: .12em !important; }
+    .lt-mkt-facts > div > div:last-child  { font-size: .8rem !important; }
+  }
+
+  /* Generic 3+ column inline grids: collapse cleanly on small screens */
+  @media (max-width: 640px) {
+    [style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+    [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+  }
+  @media (max-width: 420px) {
+    [style*="grid-template-columns:repeat(3,1fr)"],
+    [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr !important; }
+  }
+
+  /* Buttons: a touch more compact on phones */
+  @media (max-width: 480px) {
+    .lt-btn-gold, .lt-btn-ghost {
+      font-size: .88rem !important;
+    }
+  }
+
+  /* Page-header gradient circles can overflow on small viewports — clip */
+  .lt-page-header { overflow: hidden; }
+
+  /* Body line-height bump for legibility on very small screens */
+  @media (max-width: 380px) {
+    body { -webkit-text-size-adjust: 100%; }
+    .lt-section p, .lt-mkt-body p, .lt-spec-body p, .lt-tl-desc { font-size: .88rem !important; line-height: 1.6 !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -1254,7 +1340,7 @@
   <div class="lt-topbar-inner" style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
     <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
       <a href="tel:+96171231843" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-phone"/></svg> +961 71 231 843</a>
-      <a href="mailto:info@leentrade.co" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg> info@leentrade.co</a>
+      <a href="mailto:info@leentrade.net" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg> info@leentrade.net</a>
       <span class="lt-topbar-meta" style="display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-pin"/></svg> <span data-i18n="topbar.cities">Saida, Lebanon · Douala, Cameroon</span></span>
     </div>
     <div style="display:flex;gap:14px;align-items:center">
@@ -1310,7 +1396,7 @@
     <svg class="ic ic-sm"><use href="#i-envelope"/></svg> <span data-i18n="cta.rfq">Request Quote</span>  </a>
   <div class="lt-mobile-meta">
     <a href="tel:+96171231843" style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-phone"/></svg>+961 71 231 843</a>
-    <a href="mailto:info@leentrade.co" style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.co</a>
+    <a href="mailto:info@leentrade.net" style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.net</a>
     <div style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-pin"/></svg><span data-i18n="topbar.cities">Saida, Lebanon · Douala, Cameroon</span></div>
   </div>
   <div class="lt-mobile-lang">
@@ -1351,10 +1437,10 @@
         <div class="value">+961 71 231 843</div>
         <div class="note" data-i18n="contact.waNote">Fastest response for B2B enquiries.</div>
       </a>
-      <a href="mailto:info@leentrade.co" class="lt-contact-card-v2">
+      <a href="mailto:info@leentrade.net" class="lt-contact-card-v2">
         <div class="icon-wrap"><svg class="ic ic-lg"><use href="#i-envelope"/></svg></div>
         <div class="label" data-i18n="contact.emailLabel">Email</div>
-        <div class="value">info@leentrade.co</div>
+        <div class="value">info@leentrade.net</div>
         <div class="note" data-i18n="contact.emailNote">Quotes &amp; B2B enquiries</div>
       </a>
       <div class="lt-contact-card-v2" style="cursor:default">
@@ -1374,10 +1460,16 @@
 
       <!-- LEFT: RFQ FORM -->
       <div id="rfq" class="lt-reveal">
-        <form id="lt-rfq-form" style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:32px 30px;box-shadow:var(--lt-shadow-sm)">
+        <form id="lt-rfq-form" action="https://formsubmit.co/info@leentrade.net" method="POST" style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:32px 30px;box-shadow:var(--lt-shadow-sm)">
           <div style="background:linear-gradient(135deg, rgba(201,162,95,.08), rgba(201,162,95,.02));border-left:3px solid #c9a25f;padding:13px 16px;border-radius:4px;margin-bottom:22px;font-size:.84rem;line-height:1.6;color:#0a2540" data-i18n="rfq.helper">
             <strong>For faster pricing</strong>, include product size, quantity, material, delivery city, and whether you need plain or custom-printed packaging.
           </div>
+          <!-- Formsubmit.co config (hidden) -->
+          <input type="hidden" name="_subject" id="lt-rfq-subject" value="New RFQ — leentrade.net">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://leentrade.net/thanks.html">
+          <input type="text"   name="_honey"  id="lt-rfq-honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
           <div class="lt-form-grid">
             <div class="lt-field">
               <label for="rfq-name" data-i18n="rfq.f.name">Full Name *</label>
@@ -1448,7 +1540,7 @@
           <iframe class="lt-location-map" src="https://www.google.com/maps?q=Saida+Lebanon&output=embed&z=13" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Leen Trade — Saida, Lebanon office location"></iframe>
           <div class="lt-location-details">
             <div class="lt-location-office">
-              <div class="flag-tile"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Flag_of_Lebanon.svg/60px-Flag_of_Lebanon.svg.png" alt="Lebanon flag"></div>
+              <div class="flag-tile">🇱🇧</div>
               <div>
                 <div class="o-name" data-i18n="loc.lb.name">Saida, Lebanon</div>
                 <div class="o-role" data-i18n="loc.lb.role">Headquarters · Warehouse · Fleet</div>
@@ -1456,7 +1548,7 @@
               </div>
             </div>
             <div class="lt-location-office">
-              <div class="flag-tile"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/60px-Flag_of_Cameroon.svg.png" alt="Cameroon flag"></div>
+              <div class="flag-tile">🇨🇲</div>
               <div>
                 <div class="o-name" data-i18n="loc.cm.name">Douala, Cameroon</div>
                 <div class="o-role" data-i18n="loc.cm.role">Regional Hub · West &amp; Central Africa</div>
@@ -1481,7 +1573,7 @@
         <p data-i18n="footer.about" style="font-size:.88rem;color:#94a3b8;line-height:1.85;margin:0 0 24px 0;max-width:340px;font-weight:400">LEEN TRADE CO. is a Lebanese and Cameroonian B2B import, export, wholesale, and distribution company supplying food packaging, disposable products, jumbo rolls, and industrial materials to businesses across Lebanon, Cameroon, and export markets.</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
           <a href="tel:+96171231843" style="color:#cbd5e1;font-size:.9rem;font-weight:600;display:inline-flex;align-items:center;gap:10px;text-decoration:none"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-phone"/></svg>+961 71 231 843</a>
-          <a href="mailto:info@leentrade.co" style="color:#94a3b8;font-size:.86rem;font-weight:400;display:inline-flex;align-items:center;gap:10px;text-decoration:none"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.co</a>
+          <a href="mailto:info@leentrade.net" style="color:#94a3b8;font-size:.86rem;font-weight:400;display:inline-flex;align-items:center;gap:10px;text-decoration:none"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.net</a>
         </div>
         <div style="display:flex;gap:8px">
           <a href="#" aria-label="Facebook"  class="lt-social" style="width:38px;height:38px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#94a3b8"><svg class="ic ic-md"><use href="#i-facebook"/></svg></a>
@@ -2176,11 +2268,23 @@
   var rfqForm = document.getElementById('lt-rfq-form');
   if (rfqForm) {
     rfqForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      if (!validateRfq()) return;
-      var subject = encodeURIComponent('RFQ — ' + (document.getElementById('rfq-company').value || 'New enquiry'));
-      var body = encodeURIComponent(buildRfqBody());
-      window.location.href = 'mailto:info@leentrade.co?subject=' + subject + '&body=' + body;
+      // Validate before allowing native POST to formsubmit.co
+      if (!validateRfq()) { e.preventDefault(); return; }
+      // Bot trap: if the honeypot field has any value, abort silently
+      var honey = document.getElementById('lt-rfq-honey');
+      if (honey && honey.value) { e.preventDefault(); return; }
+      // Set a nice subject line from the company name
+      var subj = document.getElementById('lt-rfq-subject');
+      var company = (document.getElementById('rfq-company').value || '').trim();
+      if (subj && company) subj.value = 'New RFQ — ' + company;
+      // Show "Sending..." state on the submit button
+      var btn = rfqForm.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        btn.style.cursor = 'wait';
+      }
+      // Let the form POST natively — Formsubmit handles the rest + redirects to _next
     });
   }
   var rfqWa = document.getElementById('lt-rfq-wa');

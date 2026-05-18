@@ -40,7 +40,7 @@
         "name": "Leen Trade Co.",
         "url": "https://leentrade.co/",
         "logo": "https://leentrade.co/Assets/logo-dark.png",
-        "email": "info@leentrade.co",
+        "email": "info@leentrade.net",
         "telephone": "+961 71 231 843",
         "foundingDate": "2014",
         "areaServed": [
@@ -57,7 +57,7 @@
         "@id": "https://leentrade.co/#saida",
         "name": "Leen Trade Co. — Saida Headquarters",
         "telephone": "+961 71 231 843",
-        "email": "info@leentrade.co",
+        "email": "info@leentrade.net",
         "address": { "@type": "PostalAddress", "addressLocality": "Saida", "addressCountry": "LB" },
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
@@ -78,6 +78,14 @@
   </script>
 
 <style>
+  /* Twemoji Country Flags — needed because Windows doesn't render flag emojis natively.
+     Free, open-source font (CC-BY 4.0). Loads only when a flag emoji is rendered. */
+  @font-face {
+    font-family: 'Twemoji Country Flags';
+    unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;
+    src: url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1/dist/TwemojiCountryFlags.woff2') format('woff2');
+    font-display: swap;
+  }
 
   /* === Page-level reset (no extra browser default padding around the site) === */
   html, body { margin: 0; padding: 0; background: #fff; }
@@ -800,17 +808,56 @@
   /* RTL adjustments */
   .leen-site[dir="rtl"] .lt-tl-step .lt-tl-content { text-align: right; padding-left: 0; padding-right: 30px; }
   .leen-site[dir="rtl"] .lt-tl-step:nth-of-type(even) .lt-tl-content { text-align: left; padding-right: 0; padding-left: 30px; }
-  /* Mobile: stack everything, drop the line + dots */
+  /* Mobile: stack image-on-top + text-below, keep a left-side gold line with dot markers */
   @media (max-width: 900px) {
-    .lt-timeline::before { display: none; }
-    .lt-tl-step { grid-template-columns: 1fr; gap: 18px; margin-bottom: 56px; }
-    .lt-tl-step .lt-tl-content,
-    .lt-tl-step:nth-of-type(even) .lt-tl-content { grid-column: 1; text-align: left; padding: 0; }
+    .lt-timeline {
+      position: relative;
+      padding: 12px 0 12px 36px;
+    }
+    .lt-timeline::before {
+      display: block;
+      top: 0; bottom: 0;
+      left: 12px;
+      width: 2px;
+      transform: none;
+    }
+    .lt-tl-step {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 56px;
+      position: relative;
+    }
+    /* Clear the desktop grid-row/grid-column pinning so items stack naturally */
     .lt-tl-step .lt-tl-image,
-    .lt-tl-step:nth-of-type(even) .lt-tl-image { grid-column: 1; }
-    .lt-tl-marker { display: none; }
+    .lt-tl-step .lt-tl-content,
+    .lt-tl-step .lt-tl-marker,
+    .lt-tl-step:nth-of-type(even) .lt-tl-image,
+    .lt-tl-step:nth-of-type(even) .lt-tl-content {
+      grid-row: auto !important;
+      grid-column: 1 !important;
+      text-align: left !important;
+      padding: 0 !important;
+    }
+    /* Image first, content below */
+    .lt-tl-step .lt-tl-image   { order: 1; }
+    .lt-tl-step .lt-tl-content { order: 2; }
+    /* Marker becomes an absolute dot pinned to the left line */
+    .lt-tl-step .lt-tl-marker {
+      position: absolute;
+      left: -30px;
+      top: 14px;
+      width: 22px; height: 22px;
+      z-index: 1;
+      display: flex;
+    }
+    /* RTL: mirror — line on the right, dot on the right */
+    .leen-site[dir="rtl"] .lt-timeline { padding: 12px 36px 12px 0; }
+    .leen-site[dir="rtl"] .lt-timeline::before { left: auto; right: 12px; }
+    .leen-site[dir="rtl"] .lt-tl-step .lt-tl-marker { left: auto; right: -30px; }
     .leen-site[dir="rtl"] .lt-tl-step .lt-tl-content,
-    .leen-site[dir="rtl"] .lt-tl-step:nth-of-type(even) .lt-tl-content { text-align: right; padding: 0; }
+    .leen-site[dir="rtl"] .lt-tl-step:nth-of-type(even) .lt-tl-content {
+      text-align: right !important;
+    }
   }
 
   /* Services timeline: image height + spacing tighter on small phones */
@@ -856,14 +903,17 @@
   }
   .lt-mkt-flag {
     position: absolute;
-    top: 18px; left: 18px;
+    top: 22px; left: 22px;
     z-index: 2;
-    background: #fff;
-    border-radius: 4px;
-    padding: 5px 7px;
-    box-shadow: 0 4px 14px rgba(0,0,0,.22);
+    font-family: 'Twemoji Country Flags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: 0;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,.45));
   }
-  .lt-mkt-flag img { display: block; width: 38px; height: auto; }
+  @media (max-width: 640px) {
+    .lt-mkt-flag { top: 14px; left: 14px; font-size: 42px; }
+  }
   .lt-mkt-body {
     padding: 44px 48px;
     display: flex;
@@ -1086,16 +1136,13 @@
   }
   .lt-location-office .flag-tile {
     flex-shrink: 0;
-    width: 44px; height: 30px;
-    border-radius: 3px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12);
-    border: 1px solid rgba(255,255,255,.6);
-  }
-  .lt-location-office .flag-tile img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Twemoji Country Flags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: 0;
   }
   .lt-location-office .o-name {
     font-size: 1rem;
@@ -1208,6 +1255,84 @@
     .lt-hero-section .lt-btn-ghost .ic-sm { width: 12px !important; height: 12px !important; }
   }
 
+
+  /* === RESPONSIVE POLISH (final pass) === */
+  /* Sections use inline `padding:96px 40px` etc., so we need !important */
+  @media (max-width: 1024px) {
+    .lt-section { padding-left: 32px !important; padding-right: 32px !important; }
+    .lt-page-header { padding-left: 32px !important; padding-right: 32px !important; }
+  }
+  @media (max-width: 768px) {
+    .lt-section { padding: 64px 24px !important; }
+    .lt-page-header { padding: 60px 24px !important; }
+    .lt-page-header h1 { font-size: clamp(1.6rem, 5.8vw, 2.2rem) !important; line-height: 1.2 !important; }
+    .lt-page-header p  { font-size: .94rem !important; line-height: 1.65 !important; }
+    .lt-section-title  { font-size: clamp(1.4rem, 5vw, 1.9rem) !important; line-height: 1.22 !important; }
+    .lt-hero-title     { font-size: clamp(1.75rem, 6.5vw, 2.6rem) !important; line-height: 1.15 !important; }
+  }
+  @media (max-width: 480px) {
+    .lt-section { padding: 48px 18px !important; }
+    .lt-page-header { padding: 44px 18px !important; }
+    .lt-hero-section { padding-left: 18px !important; padding-right: 18px !important; }
+    .lt-eyebrow { font-size: .66rem !important; letter-spacing: .14em !important; }
+    .lt-page-header nav { font-size: .72rem !important; }
+  }
+
+  /* Image / iframe overflow guard — never break the viewport */
+  img, video, iframe { max-width: 100%; }
+
+  /* Floating action buttons: smaller on phones to leave content room */
+  @media (max-width: 480px) {
+    .lt-fab-wa, .lt-fab-top {
+      width: 48px !important;
+      height: 48px !important;
+    }
+    .lt-fab-wa .ic-xl { width: 22px !important; height: 22px !important; }
+    .lt-fab-top .ic-md { width: 16px !important; height: 16px !important; }
+  }
+
+  /* Inline padding on hero — make sure horizontal padding scales */
+  @media (max-width: 768px) {
+    #lt-hero > div[style*="padding:90px 40px"],
+    #lt-hero > div[style*="padding: 90px 40px"] {
+      padding: 60px 24px !important;
+    }
+  }
+
+  /* Markets card bullets / facts: tighter on tiny phones */
+  @media (max-width: 480px) {
+    .lt-mkt-body ul li { font-size: .85rem !important; line-height: 1.55 !important; padding: 4px 0 !important; }
+    .lt-mkt-facts { grid-template-columns: 1fr 1fr !important; gap: 12px 14px !important; }
+    .lt-mkt-facts > div > div:first-child { font-size: .58rem !important; letter-spacing: .12em !important; }
+    .lt-mkt-facts > div > div:last-child  { font-size: .8rem !important; }
+  }
+
+  /* Generic 3+ column inline grids: collapse cleanly on small screens */
+  @media (max-width: 640px) {
+    [style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+    [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+  }
+  @media (max-width: 420px) {
+    [style*="grid-template-columns:repeat(3,1fr)"],
+    [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr !important; }
+  }
+
+  /* Buttons: a touch more compact on phones */
+  @media (max-width: 480px) {
+    .lt-btn-gold, .lt-btn-ghost {
+      font-size: .88rem !important;
+    }
+  }
+
+  /* Page-header gradient circles can overflow on small viewports — clip */
+  .lt-page-header { overflow: hidden; }
+
+  /* Body line-height bump for legibility on very small screens */
+  @media (max-width: 380px) {
+    body { -webkit-text-size-adjust: 100%; }
+    .lt-section p, .lt-mkt-body p, .lt-spec-body p, .lt-tl-desc { font-size: .88rem !important; line-height: 1.6 !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -1256,7 +1381,7 @@
   <div class="lt-topbar-inner" style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
     <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
       <a href="tel:+96171231843" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-phone"/></svg> +961 71 231 843</a>
-      <a href="mailto:info@leentrade.co" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg> info@leentrade.co</a>
+      <a href="mailto:info@leentrade.net" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg> info@leentrade.net</a>
       <span class="lt-topbar-meta" style="display:inline-flex;align-items:center;gap:8px"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-pin"/></svg> <span data-i18n="topbar.cities">Saida, Lebanon · Douala, Cameroon</span></span>
     </div>
     <div style="display:flex;gap:14px;align-items:center">
@@ -1312,7 +1437,7 @@
     <svg class="ic ic-sm"><use href="#i-envelope"/></svg> <span data-i18n="cta.rfq">Request Quote</span>  </a>
   <div class="lt-mobile-meta">
     <a href="tel:+96171231843" style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-phone"/></svg>+961 71 231 843</a>
-    <a href="mailto:info@leentrade.co" style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.co</a>
+    <a href="mailto:info@leentrade.net" style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.net</a>
     <div style="display:inline-flex;align-items:center;gap:10px"><svg class="ic ic-md" style="color:#c9a25f"><use href="#i-pin"/></svg><span data-i18n="topbar.cities">Saida, Lebanon · Douala, Cameroon</span></div>
   </div>
   <div class="lt-mobile-lang">
@@ -1482,7 +1607,7 @@
         <p data-i18n="footer.about" style="font-size:.88rem;color:#94a3b8;line-height:1.85;margin:0 0 24px 0;max-width:340px;font-weight:400">LEEN TRADE CO. is a Lebanese and Cameroonian B2B import, export, wholesale, and distribution company supplying food packaging, disposable products, jumbo rolls, and industrial materials to businesses across Lebanon, Cameroon, and export markets.</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
           <a href="tel:+96171231843" style="color:#cbd5e1;font-size:.9rem;font-weight:600;display:inline-flex;align-items:center;gap:10px;text-decoration:none"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-phone"/></svg>+961 71 231 843</a>
-          <a href="mailto:info@leentrade.co" style="color:#94a3b8;font-size:.86rem;font-weight:400;display:inline-flex;align-items:center;gap:10px;text-decoration:none"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.co</a>
+          <a href="mailto:info@leentrade.net" style="color:#94a3b8;font-size:.86rem;font-weight:400;display:inline-flex;align-items:center;gap:10px;text-decoration:none"><svg class="ic ic-sm" style="color:#c9a25f"><use href="#i-envelope"/></svg>info@leentrade.net</a>
         </div>
         <div style="display:flex;gap:8px">
           <a href="#" aria-label="Facebook"  class="lt-social" style="width:38px;height:38px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#94a3b8"><svg class="ic ic-md"><use href="#i-facebook"/></svg></a>
@@ -2181,7 +2306,7 @@
       if (!validateRfq()) return;
       var subject = encodeURIComponent('RFQ — ' + (document.getElementById('rfq-company').value || 'New enquiry'));
       var body = encodeURIComponent(buildRfqBody());
-      window.location.href = 'mailto:info@leentrade.co?subject=' + subject + '&body=' + body;
+      window.location.href = 'mailto:info@leentrade.net?subject=' + subject + '&body=' + body;
     });
   }
   var rfqWa = document.getElementById('lt-rfq-wa');

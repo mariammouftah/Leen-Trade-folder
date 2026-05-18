@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a2540">
+  <title>Thanks — We received your request | Leen Trade Co.</title>
+  <meta name="description" content="Your B2B request has been received. The Leen Trade sales team will review your enquiry and respond with pricing and availability.">
+  <meta name="robots" content="noindex,follow">
+
+  <link rel="icon" type="image/png" href="Assets/favicon.png">
+  <link rel="apple-touch-icon" href="Assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #0a2540;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(201,162,95,.10), transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(10,37,64,.08), transparent 55%),
+        #f7f8fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      line-height: 1.6;
+    }
+
+    .thanks-card {
+      max-width: 560px;
+      width: 100%;
+      background: #fff;
+      border-radius: 14px;
+      padding: 56px 48px;
+      box-shadow: 0 24px 60px rgba(15,23,42,.10);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .thanks-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #c9a25f 0%, #d4b878 50%, #c9a25f 100%);
+    }
+
+    .thanks-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 26px;
+      border-radius: 50%;
+      background: rgba(34,197,94,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pop .5s cubic-bezier(.22,1,.36,1) .1s both;
+    }
+    .thanks-icon svg { width: 38px; height: 38px; color: #16a34a; }
+    @keyframes pop {
+      from { opacity: 0; transform: scale(.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .thanks-eyebrow {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #c9a25f;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 800;
+      margin: 0 0 18px;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+    p {
+      font-size: 1rem;
+      color: #4b5563;
+      margin: 0 0 14px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .small {
+      font-size: .86rem;
+      color: #6b7280;
+      margin-top: 26px;
+      margin-bottom: 0;
+    }
+
+    .actions {
+      margin-top: 32px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-gold {
+      background: #c9a25f;
+      color: #0a2540;
+      border: 1px solid #c9a25f;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(201,162,95,.35);
+      background: #d4b878;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: #0a2540;
+      border: 1px solid #d1d5db;
+    }
+    .btn-ghost:hover {
+      border-color: #0a2540;
+      background: rgba(10,37,64,.04);
+    }
+
+    .meta {
+      margin-top: 36px;
+      padding-top: 26px;
+      border-top: 1px solid #e5e7eb;
+      font-size: .82rem;
+      color: #6b7280;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+    .meta a {
+      color: #0a2540;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .meta a:hover { color: #c9a25f; }
+
+    @media (max-width: 480px) {
+      .thanks-card { padding: 40px 28px; border-radius: 12px; }
+      .thanks-icon { width: 64px; height: 64px; margin-bottom: 20px; }
+      .thanks-icon svg { width: 30px; height: 30px; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="thanks-card" role="main">
+    <div class="thanks-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+
+    <div class="thanks-eyebrow">Request received</div>
+    <h1>Thank you — we&rsquo;ve got your enquiry.</h1>
+    <p>
+      Our sales team will review your request and reach out with pricing,
+      availability, and lead times shortly. Most B2B enquiries get a reply
+      within <strong>1 working day</strong>.
+    </p>
+    <p class="small">
+      We&rsquo;ve also sent a confirmation copy to your inbox. If you don&rsquo;t see
+      it, please check your spam folder.
+    </p>
+
+    <div class="actions">
+      <a href="index.html" class="btn btn-gold">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v11h14V10"/></svg>
+        Back to home
+      </a>
+      <a href="https://wa.me/96171231843?text=Hello%20LEEN%20TRADE%2C%20I%20just%20submitted%20an%20RFQ%20and%20wanted%20to%20follow%20up." target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:#25D366"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.519 5.276l.36.57-1 3.652 3.745-.982.864.495z"/></svg>
+        Continue on WhatsApp
+      </a>
+    </div>
+
+    <div class="meta">
+      <div>
+        Need to reach us directly?
+      </div>
+      <div>
+        <a href="tel:+96171231843">+961 71 231 843</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:info@leentrade.net">info@leentrade.net</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
