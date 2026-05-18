@@ -1,0 +1,12 @@
+# robots.txt for leentrade.net
+# https://www.robotstxt.org/
+
+User-agent: *
+Allow: /
+
+# Internal-only or post-action pages — keep out of search results
+Disallow: /thanks/
+Disallow: /404.html
+
+# Sitemap location for faster, cleaner indexing
+Sitemap: https://leentrade.net/sitemap.xml
