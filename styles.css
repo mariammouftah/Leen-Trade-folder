@@ -879,6 +879,11 @@
     line-height: 1;
     letter-spacing: 0;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,.45));
+    /* Critical: flag emojis are pairs of regional indicator characters
+       (🇱🇧 = "L" + "B"). In RTL the pair gets reversed → "BL" has no flag
+       mapping → font falls back to two separate letter boxes. Force LTR. */
+    direction: ltr;
+    unicode-bidi: isolate;
   }
   @media (max-width: 640px) {
     .lt-mkt-flag { top: 14px; left: 14px; font-size: 42px; }
@@ -1112,6 +1117,10 @@
     font-size: 32px;
     line-height: 1;
     letter-spacing: 0;
+    /* Same RTL fix as .lt-mkt-flag — keep regional-indicator pair in LTR order
+       so the flag emoji renders instead of falling apart into two letter boxes. */
+    direction: ltr;
+    unicode-bidi: isolate;
   }
   .lt-location-office .o-name {
     font-size: 1rem;
