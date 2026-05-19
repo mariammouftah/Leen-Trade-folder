@@ -531,20 +531,34 @@
     });
     try { localStorage.setItem('lt-lang', lang); } catch(e) {}
   }
-  // Capture EN defaults from server-rendered HTML before any switch
+  // Capture EN defaults from server-rendered HTML (kept as a safety net for
+  // any data-i18n element that lacks a pre-rendered AR mirror).
   captureEnDefaults();
-  // Wire language toggle buttons
+
+  // Persist current page language to localStorage so other pages
+  // (thanks.html, 404.html) can show the matching language.
+  var currentPathLang = window.location.pathname.indexOf('/ar/') === 0
+                     || window.location.pathname === '/ar' ? 'ar' : 'en';
+  try { localStorage.setItem('lt-lang', currentPathLang); } catch(e) {}
+
+  // Wire language toggle buttons — NAVIGATE between EN/AR URLs instead of
+  // swapping content client-side. Google indexes /about/ as English and
+  // /ar/about/ as Arabic; hreflang tells it they're translations.
   document.querySelectorAll('[data-lang]').forEach(function(b){
     b.addEventListener('click', function(e){
       e.preventDefault();
-      applyLang(b.getAttribute('data-lang'));
+      var lang = b.getAttribute('data-lang');
+      var path = window.location.pathname;
+      // Strip any leading /ar/ or /ar to get the canonical EN path.
+      var basePath = path.replace(/^\/ar(\/|$)/, '/');
+      // Add /ar prefix when switching to Arabic.
+      var targetPath = (lang === 'ar')
+        ? (basePath === '/' ? '/ar/' : '/ar' + basePath)
+        : basePath;
+      // Preserve query string + hash (e.g. anchor like /request-quote/#rfq)
+      window.location.href = targetPath + window.location.search + window.location.hash;
     });
   });
-  // Restore saved language if any
-  try {
-    var saved = localStorage.getItem('lt-lang');
-    if (saved === 'ar' || saved === 'en') applyLang(saved);
-  } catch(e) {}
 
 
   // ===================== REVEAL ON SCROLL =====================

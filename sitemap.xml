@@ -1,53 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Home — top priority, the entry point -->
+  <!-- Home -->
   <url>
     <loc>https://leentrade.net/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/"/>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://leentrade.net/ar/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/"/>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Conversion pages — high priority -->
+  <!-- Products -->
   <url>
     <loc>https://leentrade.net/products/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/products/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/products/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/products/"/>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://leentrade.net/ar/products/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/products/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/products/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/products/"/>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
+  <!-- Request Quote -->
   <url>
     <loc>https://leentrade.net/request-quote/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/request-quote/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/request-quote/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/request-quote/"/>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://leentrade.net/ar/request-quote/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/request-quote/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/request-quote/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/request-quote/"/>
     <lastmod>2026-05-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Discovery pages -->
+  <!-- About -->
   <url>
     <loc>https://leentrade.net/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/about/"/>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://leentrade.net/ar/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/about/"/>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Services -->
   <url>
     <loc>https://leentrade.net/services/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/services/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/services/"/>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://leentrade.net/ar/services/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/services/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/services/"/>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Contact -->
   <url>
     <loc>https://leentrade.net/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/contact/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/contact/"/>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://leentrade.net/ar/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/contact/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/contact/"/>
     <lastmod>2026-05-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Markets -->
   <url>
     <loc>https://leentrade.net/markets/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/markets/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/markets/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/markets/"/>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://leentrade.net/ar/markets/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://leentrade.net/markets/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://leentrade.net/ar/markets/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://leentrade.net/markets/"/>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
